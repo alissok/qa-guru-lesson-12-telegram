@@ -19,13 +19,17 @@ public class TestSetupAndTeardown {
         CredsConfig config = ConfigFactory.create(CredsConfig.class);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.remote = "https://" +
-                                config.login() + ":" + config.password() + "@" +
-                                System.getProperty("remoteDriver", "selenoid.autotests.cloud") +
-                                "/wd/hub";
+        String login = config.login();
+        String password = config.password();
+        String remoteDriver = System.getProperty("remoteDriver", "selenoid.autotests.cloud");
+        String browserSize = System.getProperty("browserSize", "1920x1080");
+        String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        String browser = System.getProperty("browser", "chrome");
+
+        Configuration.baseUrl = baseUrl;
+        Configuration.browserSize = browserSize;
+        Configuration.browser = browser;
+        Configuration.remote = "https://" + login + ":" + password + "@" + remoteDriver + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
