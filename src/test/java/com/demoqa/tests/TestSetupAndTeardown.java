@@ -23,7 +23,7 @@ public class TestSetupAndTeardown {
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.remote = "https://" +
-                                config.login() + ":" + config.password() +
+                                config.login() + ":" + config.password() + "@" +
                                 System.getProperty("remoteDriver", "selenoid.autotests.cloud") +
                                 "/wd/hub";
 
